@@ -1,0 +1,5 @@
+Copy the WSO2 BPS 3.5.0 pack here
+
+e.g.: 
+/etc/puppet/files/packs/bps/3.5.0/
+                                     `-- wso2bps-3.5.0.zip	
