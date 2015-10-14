@@ -1,0 +1,7 @@
+mysql: 
+ rootUser: root
+ rootPassword: root 
+ user: 'test'
+ password: 'test'
+ host: 'mysql.bps.test'
+

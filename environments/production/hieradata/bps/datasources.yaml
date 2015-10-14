@@ -1,0 +1,21 @@
+---
+datasources:
+ registry_db_connection_url : jdbc:mysql://mysql.bps.test:3306/regdb?autoReconnect=true
+ registry_db_user : root
+ registry_db_password : root
+ registry_db_driver_name : com.mysql.jdbc.Driver
+ userstore_db_connection_url : jdbc:mysql://mysql.bps.test:3306/userdb?autoReconnect=true
+ userstore_db_user : root
+ userstore_db_password : root
+ userstore_db_driver_name : com.mysql.jdbc.Driver
+ bpmn_db_connection_url : jdbc:mysql://mysql.bps.test:3306/bpmn?autoReconnect=true
+ bpmn_db_user : root
+ bpmn_db_password : root
+ bpmn_db_driver_name : com.mysql.jdbc.Driver
+ bpel_db_connection_url : jdbc:mysql://mysql.bps.test:3306/bpel?autoReconnect=true
+ bpel_db_user : root
+ bpel_db_password : root
+ bpel_db_driver_name : com.mysql.jdbc.Driver
+ db_root_user : root
+ db_root_user_password : root
+ db_host : mysql.bps.test

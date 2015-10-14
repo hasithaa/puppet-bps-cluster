@@ -23,9 +23,7 @@ mysql::db { 'bpeldb':
     user	=> $user,
     password 	=> $password,
     host     	=> $host,
-    sql 	=> "/tmp/wso2am-${bps_version}/dbscripts/bps/bpmn/create/activiti.mysql.create.engine.sql",
-    sql 	=> "/tmp/wso2am-${bps_version}/dbscripts/bps/bpmn/create/activiti.mysql.create.history.sql",
-    sql 	=> "/tmp/wso2am-${bps_version}/dbscripts/bps/bpmn/create/activiti.mysql.create.identity.sql",
+    sql 	=> "/tmp/wso2am-${bps_version}/dbscripts/bps/bpmn/create/mysql.sql",
  }
 
 mysql::db { 'userdb':

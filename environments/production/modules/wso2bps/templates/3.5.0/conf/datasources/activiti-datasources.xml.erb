@@ -1,0 +1,32 @@
+<datasources-configuration xmlns:svns="http://org.wso2.securevault/configuration">
+  
+    <providers>
+        <provider>org.wso2.carbon.ndatasource.rdbms.RDBMSDataSourceReader</provider>
+    </providers>
+  
+    <datasources>
+      
+        <datasource>
+            <name>ACTIVITI_DB</name>
+            <description>The datasource used for activiti engine</description>
+            <jndiConfig>
+                <name>jdbc/ActivitiDB</name>
+            </jndiConfig>
+            <definition type="RDBMS">
+                <configuration>
+	                <url><%= @bpmn_db_connection_url %></url>
+	                <username><%= @bpmn_db_user %></username>
+	                <password><%= @bpmn_db_password %></password>
+	                <driverClassName><%= @bpmn_db_driver_name %></driverClassName>
+                    <maxActive>50</maxActive>
+                    <maxWait>60000</maxWait>
+                    <testOnBorrow>true</testOnBorrow>
+                    <validationQuery>SELECT 1</validationQuery>
+                    <validationInterval>30000</validationInterval>
+                </configuration>
+            </definition>
+        </datasource>
+
+    </datasources>
+
+</datasources-configuration>
