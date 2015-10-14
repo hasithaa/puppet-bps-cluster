@@ -4,7 +4,7 @@ class cleandb::mysql($bps_version, $user, $password, $host)
 {
 
 staging::deploy { "wso2bps-${bps_version}.zip":
-  source        => "puppet:///files/packs/bps/${bps_version}/wso2am-${bps_version}.zip",
+  source        => "puppet:///files/packs/bps/${bps_version}/wso2bps-${bps_version}.zip",
   target        => '/tmp/',
 }
 
