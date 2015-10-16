@@ -1,3 +1,5 @@
-class wso2bps inherits wso2bps::commons {
-        
+class wso2bps (
+    ) inherits wso2bps::params {
+
+        class { java :}
 }
