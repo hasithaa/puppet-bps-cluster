@@ -1,8 +1,8 @@
 
-import "wso2bps/common"
+import 'wso2bps'
 
 node 'mysql.bps.test' {
-	class { 'wso2bps::common' :}
+	include wso2bps
 }
 
 node 'manager.bps.test' {
