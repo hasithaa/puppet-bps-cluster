@@ -13,6 +13,11 @@ class wso2bps::params {
     $package    = "jdk-8u45-linux-x64.tar.gz"
     $java_dir   = '/mnt/java'
 
+    # WSO2BPS
+    $carbon_product  = "wso2bps"
+    $carbon_product_version  = "3.5.0"
+    $carbon_dir   = '/mnt/carbon'
+
     # maven
     $maven_package  ="apache-maven-3.0.5-bin.tar.gz"
     $maven_dir      ="apache-maven-3.0.5" 
