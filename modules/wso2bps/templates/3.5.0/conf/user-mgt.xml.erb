@@ -37,6 +37,7 @@
             <Property name="ConnectionURL">ldap://localhost:${Ports.EmbeddedLDAP.LDAPServerPort}</Property>
             <Property name="ConnectionName">uid=admin,ou=system</Property>
             <Property name="ConnectionPassword">admin</Property>
+            <Property name="LDAPConnectionTimeout">5000</Property>
             <Property name="Disabled">false</Property>           
             <Property name="passwordHashMethod">SHA</Property>
             <Property name="UserNameListFilter">(objectClass=person)</Property>
@@ -71,6 +72,8 @@
             <Property name="MaxRoleNameListLength">100</Property>
             <Property name="MaxUserNameListLength">100</Property>
             <Property name="SCIMEnabled">false</Property>
+	    <Property name="ConnectionPoolingEnabled">false</Property>
+	    <Property name="MultiAttributeSeparator">,</Property>
         </UserStoreManager-->
 
 	<!-- Following is the configuration for internal JDBC user store. This user store manager is based on JDBC. In case if application needs to manage 		     passwords externally set property <Property name="PasswordsExternallyManaged">true</Property>. In case if user core cache domain is needed to 			identify uniquely set property <Property name="UserCoreCacheIdentifier">domain</Property>. Furthermore properties, IsEmailUserName and 	     			DomainCalculation are readonly properties. 
@@ -97,6 +100,8 @@
             <Property name="MaxUserNameListLength">100</Property>
 	    <Property name="SharedGroupEnabled">false</Property>
             <Property name="SCIMEnabled">false</Property>
+            <Property name="CaseInsensitiveUsername">true</Property>
+            <Property name="MultiAttributeSeparator">,</Property>
         </UserStoreManager>
 	
 	<!-- If product is using an external LDAP as the user store in READ ONLY mode, use following user manager.
@@ -110,6 +115,7 @@
             <Property name="ConnectionURL">ldap://localhost:10389</Property>
             <Property name="ConnectionName">uid=admin,ou=system</Property>
             <Property name="ConnectionPassword">admin</Property>
+            <Property name="LDAPConnectionTimeout">5000</Property>
 	    <Property name="passwordHashMethod">PLAIN_TEXT</Property>
             <Property name="UserSearchBase">ou=system</Property>
             <Property name="UserNameListFilter">(objectClass=person)</Property>
@@ -132,6 +138,8 @@
             <Property name="MaxRoleNameListLength">100</Property>
             <Property name="MaxUserNameListLength">100</Property>
             <Property name="SCIMEnabled">false</Property>
+	    <Property name="ConnectionPoolingEnabled">false</Property>
+	    <Property name="MultiAttributeSeparator">,</Property>
         </UserStoreManager-->
 	
 	<!-- Active directory configuration is as follows.
@@ -151,6 +159,7 @@
             <Property name="ConnectionURL">ldaps://10.100.1.100:636</Property> 
             <Property name="ConnectionName">CN=admin,CN=Users,DC=WSO2,DC=Com</Property>
             <Property name="ConnectionPassword">A1b2c3d4</Property>
+            <Property name="LDAPConnectionTimeout">5000</Property>
 	    <Property name="passwordHashMethod">PLAIN_TEXT</Property>
             <Property name="UserSearchBase">CN=Users,DC=WSO2,DC=Com</Property>
             <Property name="UserEntryObjectClass">user</Property>
@@ -185,6 +194,8 @@
             <Property name="MaxRoleNameListLength">100</Property>
             <Property name="MaxUserNameListLength">100</Property>
             <Property name="SCIMEnabled">false</Property>
+	    <Property name="ConnectionPoolingEnabled">false</Property>
+	    <Property name="MultiAttributeSeparator">,</Property>
         </UserStoreManager-->
 	
 	<!-- If product is using an external LDAP as the user store in read/write mode, use following user manager 
@@ -196,6 +207,7 @@
             <Property name="Disabled">false</Property>                       
             <Property name="ConnectionName">uid=admin,ou=system</Property>
             <Property name="ConnectionPassword">secret</Property>
+            <Property name="LDAPConnectionTimeout">5000</Property>
             <Property name="passwordHashMethod">PLAIN_TEXT</Property>
             <Property name="UserNameListFilter">(objectClass=person)</Property>
 	    <Property name="UserEntryObjectClass">inetOrgPerson</Property>
@@ -229,6 +241,8 @@
             <Property name="MaxRoleNameListLength">100</Property>
             <Property name="MaxUserNameListLength">100</Property>
             <Property name="SCIMEnabled">false</Property>
+	    <Property name="ConnectionPoolingEnabled">false</Property>
+	    <Property name="MultiAttributeSeparator">,</Property>
         </UserStoreManager-->
 
 	<!-- Following user manager is used by Identity Server (IS) as its default user manager. 
@@ -245,6 +259,7 @@
             <Property name="ConnectionURL">ldap://localhost:${Ports.EmbeddedLDAP.LDAPServerPort}</Property>
             <Property name="ConnectionName">uid=admin,ou=system</Property>
             <Property name="ConnectionPassword">admin</Property>
+            <Property name="LDAPConnectionTimeout">5000</Property>
             <Property name="passwordHashMethod">SHA</Property>
             <Property name="UserNameListFilter">(objectClass=person)</Property>
             <Property name="UserEntryObjectClass">identityPerson</Property>
@@ -281,6 +296,8 @@
 	    <Property name="SCIMEnabled">true</Property>
             <Property name="MaxRoleNameListLength">100</Property>
             <Property name="MaxUserNameListLength">100</Property>
+	    <Property name="ConnectionPoolingEnabled">false</Property>
+	    <Property name="MultiAttributeSeparator">,</Property>
         </ISUserStoreManager-->
 
 	<!--	Following configuration is for the CassandraUserStoreManager. The CassandraUserStoreManager is capable of using a Cassandra
@@ -312,6 +329,7 @@
             class="org.wso2.carbon.user.core.authorization.JDBCAuthorizationManager">
             <Property name="AdminRoleManagementPermissions">/permission</Property>
 	    <Property name="AuthorizationCacheEnabled">true</Property>
+	    <!--Property name="GetAllRolesOfUserEnabled">true</Property-->
         </AuthorizationManager>
     </Realm>
 </UserManager>

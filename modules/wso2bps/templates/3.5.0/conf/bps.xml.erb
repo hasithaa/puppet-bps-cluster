@@ -110,7 +110,10 @@
     
     <!-- If you are using BPS in a clustered environment, then uncomment blow entry -->
     <%- if @nodetype == 'manager' or @nodetype == 'worker' or @clustering == 'true' -%>
-    <tns:UseDistributedLock>true</tns:UseDistributedLock> -->
+    <tns:UseDistributedLock>true</tns:UseDistributedLock> 
+    <%- else -%>
+    <!-- <tns:UseDistributedLock>true</tns:UseDistributedLock> -->
+    
     <%- end -%>
     <!-- <tns:UseInstanceStateCache>true</tns:UseInstanceStateCache> -->
 

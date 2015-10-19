@@ -1,37 +1,41 @@
 class wso2bps::bps (
-    $carbon_product 	= $wso2bps::params::carbon_product,
-    $carbon_product_version    = $wso2bps::params::carbon_product_version,
-    $carbon_dir   = $wso2bps::params::carbon_dir,
+        $version   = "3.5.0",
+        $offset    = 0,
+        $depsync   = false,
+        $clustering    = false,
+        $local_member_port   = undef,
+        $membershipScheme    = undef,
+        $cluster_domain      = undef,
+        $sub_cluster_domain  = undef,
+        $maintenance_mode    = true,
+        $owner               = "root",
+        $group               = "root",
+        $members             = {'127.0.0.1' => '4000'},
+        $port_mapping                    = undef,
+        $nodetype                        =  undef,
     )  inherits wso2bps::params {
 
+	$carbon_product 	= $wso2bps::params::carbon_product
+    $carbon_dir   = $wso2bps::params::carbon_dir
+	$carbon_version  = $version
+	$carbon_home 	 = "${carbon_dir}/${carbon_product}/${carbon_version}/${carbon_product}-${carbon_version}"
 
-	file { "${carbon_dir}":
-	    ensure => "directory",
-	}
+	$service_templates = [
+    'conf/axis2/axis2.xml',
+    'conf/carbon.xml',
+    'conf/registry.xml',
+    'conf/user-mgt.xml',
+	'conf/bps.xml',
+	'conf/humantask.xml',
+	'conf/b4p-coordination-config.xml',
+    ]
 
-	file { "${carbon_dir}/${carbon_product}":
-	    ensure => "directory",
-	}
-
-	file { "${carbon_dir}/${carbon_product}/${carbon_product_version}":
-	    ensure => "directory",
-	}
-
-    # Installing BPS 
-	file { "${carbon_dir}/${carbon_product}/${carbon_product_version}/${carbon_product}-${carbon_product_version}.zip":
-                source => "puppet:///files/packs/${carbon_product}/${carbon_product_version}/${carbon_product}-${carbon_product_version}.zip",
-				mode   => 0755,
-			    owner  => root,
-			    group  => root,
-                ensure => file,
-        }
-    -> 
-    exec { 
-
-        "install_bps":
-        path      => ["/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"],
-        cwd	  => "${carbon_dir}/${carbon_product}/${carbon_product_version}",
-        command   => "unzip -f ${carbon_product}-${carbon_product_version}.zip",
-        unless    => "test -d {carbon_product}-${carbon_product_version}",
-    } 
+    wso2bps::push_templates  {
+	    $service_templates:
+	      target    => $carbon_home,
+	      directory => "${carbon_product}/${version}",
+	      owner     => $owner,
+	      group     => $group,
+	      require   => Exec["installing_bps_${carbon_product}-${carbon_version}"],
+  	}
 }

@@ -1,0 +1,6 @@
+---
+dbserver:
+ depsync: false
+ offset: 0
+ clustering: false
+

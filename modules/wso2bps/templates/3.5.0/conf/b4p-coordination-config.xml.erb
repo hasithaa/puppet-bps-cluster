@@ -18,8 +18,11 @@
 <HumanTaskCoordinationConfiguration xmlns="http://wso2.org/bps/b4p/coordination/config"
                                     xmlns:svns="http://org.wso2.securevault/configuration">
     <!-- BPEL4PEOPLE Coordination configuration -->
-    <TaskCoordinationEnabled><%= @HumanTaskCoordination %></TaskCoordinationEnabled>
-
+	<%- if @taskCoordinationEnabled -%>
+    <TaskCoordinationEnabled>true</TaskCoordinationEnabled>
+	<%- else -%>
+    <TaskCoordinationEnabled>false</TaskCoordinationEnabled>
+	<%- end -%>
     <!--Task Engine's protocol handler authentication -->
     <TaskProtocolHandlerAuthentication>
         <Username>admin</Username>

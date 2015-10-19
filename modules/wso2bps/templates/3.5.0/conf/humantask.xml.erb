@@ -27,7 +27,11 @@
     <UIRenderingEnabled>true</UIRenderingEnabled>
     <HumanTaskCoordination>
         <!-- HumanTask Coordination configuration -->
-        <TaskCoordinationEnabled><%= @HumanTaskCoordination %></TaskCoordinationEnabled>
+		<%- if @taskCoordinationEnabled -%>
+        <TaskCoordinationEnabled>true</TaskCoordinationEnabled>
+		<%- else -%>
+        <TaskCoordinationEnabled>false</TaskCoordinationEnabled>
+		<%- end -%>
 
         <!--Task Engine's protocol handler authentication -->
         <RegistrationServiceAuthentication>

@@ -1,0 +1,19 @@
+---
+manager:
+ offset: 0
+ depsync: false
+ clustering: false
+ local_member_port: 4000
+ membershipScheme: wka
+ cluster_domain: bps.wso2.com
+ sub_cluster_domain: false
+ members:
+    - 
+     name: manager1
+     port: 4000
+ port_mapping: false
+ stage: deploy
+ HumanTaskCoordination: true
+
+
+
