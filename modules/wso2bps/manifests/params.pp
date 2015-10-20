@@ -1,5 +1,6 @@
 class wso2bps::params {
 
+    $deployment_pattern = "standalone"
     $domain               = "bps.wso2.com"
     $depsync_svn_repo     = "http://svn.${domain}/svn/amdepsync"
     $local_package_dir    = "/mnt/packs"
@@ -21,5 +22,6 @@ class wso2bps::params {
     # maven
     $maven_package  ="apache-maven-3.0.5-bin.tar.gz"
     $maven_dir      ="apache-maven-3.0.5" 
+
 
 }

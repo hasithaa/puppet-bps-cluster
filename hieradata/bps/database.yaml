@@ -3,5 +3,5 @@ mysql:
  rootPassword: root 
  user: 'test'
  password: 'test'
- host: 'mysql.bps.test'
+ host: 'mysql.bps.wso2.com'
 

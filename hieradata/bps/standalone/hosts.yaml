@@ -1,3 +1,15 @@
+---
+hostnames:
+  www1:
+    name: manager.bps.wso2.com
+    ip: 192.168.127.102
+    comment: manager BPS node
+  www2:
+    name: mysql.bps.wso2.com
+    ip: 192.168.127.103
+    comment: My SQL database server
+
+
 nodes:
   manager1: 192.168.127.102
-  dbserver: 192.168.127.102
+  dbserver: 192.168.127.103

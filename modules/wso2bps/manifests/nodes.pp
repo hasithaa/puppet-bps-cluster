@@ -1,7 +1,9 @@
-$common     = hiera("nodeinfo")
-$datasource = hiera("datasources")
 
 node base {
+
+    $common     = hiera("nodeinfo")
+    $datasource = hiera("datasources")
+
     class { "wso2bps::clean" :} 
     ->
     class { "wso2bps::java" :} 
