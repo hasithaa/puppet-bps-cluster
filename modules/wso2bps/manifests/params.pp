@@ -1,27 +1,17 @@
 class wso2bps::params {
 
-    $deployment_pattern = "standalone"
-    $domain               = "bps.wso2.com"
-    $depsync_svn_repo     = "http://svn.${domain}/svn/amdepsync"
-    $local_package_dir    = "/mnt/packs"
-    $hosts_mapping = [  
-                        "172.16.115.133,puppetmaster puppet",
-                        "172.16.115.134,mysql.bps.wso2.com",
-                    ]
+    $config = hiera("config")
+    
+    $deployment_pattern = $config[deploymentPattern]
+    $domain               = $config[domain]
 
     # Java
-    $java_home  = "jdk1.8.0_45"
-    $package    = "jdk-8u45-linux-x64.tar.gz"
     $java_dir   = '/mnt/java'
+    $java  = $config[java]
+    $java_package    = $config[javaPackage]
 
     # WSO2BPS
-    $carbon_product  = "wso2bps"
-    $carbon_product_version  = "3.5.0"
     $carbon_dir   = '/mnt/carbon'
-
-    # maven
-    $maven_package  ="apache-maven-3.0.5-bin.tar.gz"
-    $maven_dir      ="apache-maven-3.0.5" 
-
-
+    $carbon_product  = $config[product]
+    $carbon_product_version  = $config[version]
 }

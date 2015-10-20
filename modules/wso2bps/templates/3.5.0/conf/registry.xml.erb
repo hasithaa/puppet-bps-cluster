@@ -31,14 +31,11 @@
         <dataSource>jdbc/WSO2CarbonDB</dataSource>
     </dbConfig>
 
-
 	<%- if @nodetype == 'manager' or @nodetype == 'worker' or @clustering == 'true'-%>
     <dbConfig name="govregistry">
         <dataSource>jdbc/WSO2REG_DB</dataSource>
     </dbConfig>
     <%- end -%>
-
-
    <!--<handler class="org.wso2.carbon.registry.extensions.handlers.SynapseRepositoryHandler">
         <filter class="org.wso2.carbon.registry.core.jdbc.handlers.filters.MediaTypeMatcher">
             <property name="mediaType">application/vnd.apache.synapse</property>
@@ -98,11 +95,8 @@
         <id>gov</id>
         <cacheId><%= @registry_db_user %>@<%= @registry_db_connection_url %></cacheId>
         <dbConfig>govregistry</dbConfig>
-        <%- if @nodeType == 'manager' -%>
-	    <readOnly>false</readOnly>
-	    <%- else -%>
-	    <readOnly>true</readOnly>
-	    <%- end -%>
+        <%- if @nodeType == 'manager' -%><readOnly>false</readOnly>
+        <%- else -%><readOnly>true</readOnly><%- end -%>
         <enableCache>true</enableCache>
         <registryRoot>/</registryRoot>
      </remoteInstance>

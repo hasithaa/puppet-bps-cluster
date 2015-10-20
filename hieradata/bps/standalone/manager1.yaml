@@ -12,8 +12,7 @@ manager:
      name: manager1
      port: 4000
  port_mapping: false
- stage: deploy
- HumanTaskCoordination: true
+
 
 
 

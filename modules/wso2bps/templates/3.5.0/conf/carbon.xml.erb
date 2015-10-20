@@ -45,9 +45,9 @@
        This is will become part of the End Point Reference of the
        services deployed on this server instance.
     -->
-<%- if @carbon_hostname -%>
-	    <HostName><%= @carbon_hostname %></HostName>
-<%- end -%>
+<%- ipaddress = @ipaddress -%>
+<%- hostnames = scope.function_hiera(['carbonHosts']) -%>
+    <HostName><%=hostnames.key(ipaddress) %></HostName>
 
     <!--
     Host name to be used for the Carbon management console
@@ -575,11 +575,11 @@
 	and in  worker nodes set only AutoCheckout to true.
     -->
     <DeploymentSynchronizer>
-		<%- if @depsync_enabled -%>
+		<%- if @depsync == true -%>
         <Enabled>true</Enabled>
 		<%- else -%>
         <Enabled>false</Enabled>
-    	<%- end -%>
+    <%- end -%>
 		<%- if @nodetype == 'manager' -%>
         <AutoCommit>true</AutoCommit>
     	<%- else -%>

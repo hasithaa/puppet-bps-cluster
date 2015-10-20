@@ -1,11 +1,9 @@
 class wso2bps (
-	$deployment_pattern 	= $puppetsetup::params::deployment_pattern,
     ) inherits wso2bps::params {
-
 
     node default {
         
-	        notify {"Configuring deployment, running the default configuration, writing certnames.....": }
+	        notify {"Writing certnames to prepare the puppet agent nodes": }
 
 	        # Writing certnames to prepare the puppet agent nodes
 	        file {  "/etc/puppet/puppet.conf":
@@ -13,7 +11,9 @@ class wso2bps (
 	                content => template('wso2bps/puppet.agent.conf.erb'),
 			}
 
-			$hostnames = hiera('hostnames',{})
+			notify {"Updating Hosts": }
+
+			$hostnames = hiera('hosts',{})
 
 			create_resources(host, $hostnames)
 	}

@@ -14,7 +14,7 @@
         <TransactionManagerClass>org.apache.ode.il.EmbeddedGeronimoFactory</TransactionManagerClass>
     </TransactionManagerConfig>
     <SchedulerConfig>
-        <MaxThreadPoolSize>5</MaxThreadPoolSize>
+        <MaxThreadPoolSize><%= @htSchedulerThread %></MaxThreadPoolSize>
     </SchedulerConfig>
     <!--TaskCleanupConfig>
         <cronExpression>0 0 0/4 * * ?</cronExpression>
@@ -27,7 +27,7 @@
     <UIRenderingEnabled>true</UIRenderingEnabled>
     <HumanTaskCoordination>
         <!-- HumanTask Coordination configuration -->
-		<%- if @taskCoordinationEnabled -%>
+		<%- if @taskCoordination == 'true' -%>
         <TaskCoordinationEnabled>true</TaskCoordinationEnabled>
 		<%- else -%>
         <TaskCoordinationEnabled>false</TaskCoordinationEnabled>
@@ -51,9 +51,16 @@
     <EnableTaskOperationsForBusinessAdministrator>false</EnableTaskOperationsForBusinessAdministrator>
 
     <!-- Enable Disable Caching -->
+    <%- if @taskCaching == 'true' -%>
+    <CacheConfiguration>
+    <EnableCaching>true</EnableCaching>
+    </CacheConfiguration>
+    <%- else -%>
     <!--CacheConfiguration>
 	<EnableCaching>true</EnableCaching>
     </CacheConfiguration-->
+    <%- end -%>
+
     <EnableTaskValidationBeforeDeployment>true</EnableTaskValidationBeforeDeployment>
     <EnableEMailNotification>false</EnableEMailNotification>
     <EnableSMSNotification>false</EnableSMSNotification>

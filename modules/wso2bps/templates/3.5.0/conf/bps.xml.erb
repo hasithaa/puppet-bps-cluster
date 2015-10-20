@@ -65,15 +65,15 @@
     </tns:OpenJPAConfig>
 
     <!-- Message exchange timeout. Default value is 120000ms -->
-    <tns:MexTimeOut value="180000"/>
+    <tns:MexTimeOut value="<%= @odeTimeout %>"/>
 
     <!-- External Service invocation timeout. Default value is 60000ms -->
-    <tns:ExternalServiceTimeOut value="180000"/>
+    <tns:ExternalServiceTimeOut value="<%= @odeTimeout %>"/>
 
     <!-- MultithreadedHttpConnectionManager tuning parameters -->
     <tns:MultithreadedHttpConnectionManagerConfig>
-        <tns:maxConnectionsPerHost value="200"/>
-        <tns:maxTotalConnections value="200"/>
+        <tns:maxConnectionsPerHost value="<%= @perHostHttpConnections %>"/>
+        <tns:maxTotalConnections value="<%= @maxHttpConnections %>"/>
         <!--<tns:connectionKeepAlive value="false"/> -->
     </tns:MultithreadedHttpConnectionManagerConfig>
 
@@ -106,10 +106,10 @@
     <!--tns:InMemoryInstanceTimeToLive>600000</tns:InMemoryInstanceTimeToLive-->
 
     <!-- This property  can be used to configure ode scheduler thread pool size  -->
-    <tns:ODESchedulerThreadPoolSize>50</tns:ODESchedulerThreadPoolSize>
+    <tns:ODESchedulerThreadPoolSize><%= @odeSchedulerThread %></tns:ODESchedulerThreadPoolSize>
     
     <!-- If you are using BPS in a clustered environment, then uncomment blow entry -->
-    <%- if @nodetype == 'manager' or @nodetype == 'worker' or @clustering == 'true' -%>
+    <%- if @clustering == 'true' -%>
     <tns:UseDistributedLock>true</tns:UseDistributedLock> 
     <%- else -%>
     <!-- <tns:UseDistributedLock>true</tns:UseDistributedLock> -->

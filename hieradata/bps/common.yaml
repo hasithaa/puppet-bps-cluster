@@ -1,12 +1,8 @@
 ---
 nodeinfo: 
- version: 3.5.0
  maintenance_mode: zero
- owner: root
- group: root
- svn_url: http://svn.bps.wso2.com/svn/depsync/bps
- svn_username: user1
- svn_password: user1
+ owner: wso2user
+ group: wso2user
 
 defaultportinfo:
  HTTP: 80 

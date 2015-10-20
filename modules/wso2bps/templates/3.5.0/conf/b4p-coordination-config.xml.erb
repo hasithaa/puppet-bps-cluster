@@ -18,7 +18,7 @@
 <HumanTaskCoordinationConfiguration xmlns="http://wso2.org/bps/b4p/coordination/config"
                                     xmlns:svns="http://org.wso2.securevault/configuration">
     <!-- BPEL4PEOPLE Coordination configuration -->
-	<%- if @taskCoordinationEnabled -%>
+	<%- if @taskCoordination == 'true' -%>
     <TaskCoordinationEnabled>true</TaskCoordinationEnabled>
 	<%- else -%>
     <TaskCoordinationEnabled>false</TaskCoordinationEnabled>

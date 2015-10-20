@@ -1,3 +1,17 @@
-carbon:
-	product: wso2bps
-	version: 3.5.0
+config:
+  deploymentPattern: "standalone"
+  domain:	"bps.wso2.com"
+  product: "wso2bps"
+  version: "3.5.0"
+  java: "jdk1.8.0_45"
+  javaPackage: "jdk-8u45-linux-x64.tar.gz"
+
+perfConfig:
+  odeTimeout: 180000
+  odeSchedulerThread: 50
+  htSchedulerThread: 5
+  maxHttpConnections: 400
+  perHostHttpConnections: 200
+  taskCoordination: true
+  taskCaching: true
+

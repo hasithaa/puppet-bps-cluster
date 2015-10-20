@@ -1,6 +1,6 @@
 class wso2bps::java (
-    $java_home 	= $wso2bps::params::java_home,
-    $package    = $wso2bps::params::package,
+    $java_home 	= $wso2bps::params::java,
+    $java_package    = $wso2bps::params::java_package,
     $java_dir   = $wso2bps::params::java_dir,
     )  inherits wso2bps::params {
 
@@ -10,8 +10,8 @@ class wso2bps::java (
 	}
 
     # Installing Java 
-	file { "${java_dir}/${package}":
-                source => "puppet:///files/java/${package}",
+	file { "${java_dir}/${java_package}":
+                source => "puppet:///files/java/${java_package}",
 				mode   => 0755,
 			    owner  => root,
 			    group  => root,
@@ -23,7 +23,7 @@ class wso2bps::java (
         "install_java":
         path      => ["/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"],
         cwd	  => "${java_dir}",
-        command   => "tar -xzf ${java_dir}/${package}",
+        command   => "tar -xzf ${java_dir}/${java_package}",
         unless    => "test -d ${java_dir}/${java_home}",
         creates   => "${java_dir}/${java_home}/COPYRIGHT";
 
