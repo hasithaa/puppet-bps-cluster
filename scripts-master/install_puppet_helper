@@ -4,14 +4,14 @@ install_puppetmaster (){
 	wget https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
 	dpkg -i puppetlabs-release-trusty.deb
 	apt-get update
-	apt-get install puppetmaster
+	apt-get install apt-get -y --force-yes puppetmaster
 	PKG_OK2=$(dpkg-query -W --showformat='${Status}\n' puppetmaster|grep "install ok installed")
 	if [ "" == "$PKG_OK2" ]; then
 		echo "installation failed. Please install manually."
 		exit 0
 	else	
 		PKG_VER=$(dpkg-query -W --showformat='${Version}\n' puppetmaster)
-		echo "----- Puppet version installed $PKG_VER, Puppet version Should be 3.8.3 or higher----"
+		echo "----- Installed Puppet version : $PKG_VER, Puppet version Should be 3.8.3 or higher----"
 		echo "----- Checking hiera installation."
 		puppet resource package hiera ensure=installed
 		echo "----- Installing mysql module"
@@ -34,12 +34,11 @@ if [ "" == "$PKG_OK" ]; then
  	install_puppetmaster
 else
 	PKG_VER=$(dpkg-query -W --showformat='${Version}\n' puppetmaster)
-	echo "----- Puppet version installed $PKG_VER, Puppet version Should be 3.8.3 or higher----"
-	read -p "Do you want to install latest puppetmaster [ENTER y to install, any other to exit]:" yn
+	echo "----- Current ----- Installed Puppet version : $PKG_VER, Puppet version Should be 3.8.3 or higher----"
+	read -p "Do you want to install latest puppetmaster [ENTER y to install, n to exit]:" yn
     case $yn in
         [Yy]* ) install_puppetmaster ;;
-        [Nn]* ) echo "Skiping installation"; exit;;
-        * ) echo "Please answer yes or no.";;
+        * ) echo "Skiping installation"; exit;;
     esac
 fi
 

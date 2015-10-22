@@ -1,0 +1,29 @@
+#!/bin/bash
+install_puppet (){
+	apt-get install apt-get -y --force-yes puppet
+	PKG_OK2=$(dpkg-query -W --showformat='${Status}\n' puppet|grep "install ok installed")
+	if [ "" == "$PKG_OK2" ]; then
+		echo "installation failed. Please install puppet manually."
+		exit 0
+	else	
+		PKG_VER=$(dpkg-query -W --showformat='${Version}\n' puppet)
+		echo "----- Installed Puppet version : $PKG_VER"
+	fi
+}
+
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+echo "----- Validating puppet installation"
+PKG_OK=$(dpkg-query -W --showformat='${Status}\n' puppet|grep "install ok installed")
+
+if [ "" == "$PKG_OK" ]; then
+ 	echo "No puppet installation is detected. Setting up puppet"
+ 	install_puppet
+else
+	PKG_VER=$(dpkg-query -W --showformat='${Version}\n' puppet)
+	echo "----- Installed Puppet version : $PKG_VER"
+fi
+
