@@ -1,0 +1,45 @@
+#!/bin/bash
+install_puppetmaster (){
+	cd /tmp
+	wget https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
+	dpkg -i puppetlabs-release-trusty.deb
+	apt-get update
+	apt-get install puppetmaster
+	PKG_OK2=$(dpkg-query -W --showformat='${Status}\n' puppetmaster|grep "install ok installed")
+	if [ "" == "$PKG_OK2" ]; then
+		echo "installation failed. Please install manually."
+		exit 0
+	else	
+		PKG_VER=$(dpkg-query -W --showformat='${Version}\n' puppetmaster)
+		echo "----- Puppet version installed $PKG_VER, Puppet version Should be 3.8.3 or higher----"
+		echo "----- Checking hiera installation."
+		puppet resource package hiera ensure=installed
+		echo "----- Installing mysql module"
+		puppet module install puppetlabs-mysql 
+		echo "----- Installing apt module"
+		puppet module install puppetlabs-apt
+	fi
+}
+
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+echo "----- Validating puppetmaster installation"
+PKG_OK=$(dpkg-query -W --showformat='${Status}\n' puppetmaster|grep "install ok installed")
+
+if [ "" == "$PKG_OK" ]; then
+ 	echo "No puppetmaster installation is detected. Setting up latest puppetmaster."
+ 	install_puppetmaster
+else
+	PKG_VER=$(dpkg-query -W --showformat='${Version}\n' puppetmaster)
+	echo "----- Puppet version installed $PKG_VER, Puppet version Should be 3.8.3 or higher----"
+	read -p "Do you want to install latest puppetmaster [ENTER y to install, any other to exit]:" yn
+    case $yn in
+        [Yy]* ) install_puppetmaster ;;
+        [Nn]* ) echo "Skiping installation"; exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+fi
+
